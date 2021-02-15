@@ -15,6 +15,8 @@ import net.sourceforge.argparse4j.inf.ArgumentParserException;
 public class MouseMover {
 
   public static void main(String... args) throws AWTException {
+    // Argparse4j is a command line argument parser library
+    // for Java based on Python's argparse module.
     val parser =
         ArgumentParsers.newFor(MouseMover.class.getSimpleName())
             .build()
@@ -61,7 +63,8 @@ public class MouseMover {
       System.exit(1);
       return;
     }
-
+    // This class is used to generate native system input events for the purposes of test automation,
+    // self-running demos, and other applications where control of the mouse and keyboard is needed.
     val robot = new Robot();
     val oldLocation = new Point(-1, -1);
     while (true) {
@@ -87,6 +90,7 @@ public class MouseMover {
           distance = -distance;
           Thread.sleep(shortDelay * 1000);
         } else {
+          // first time? old location is (-1, -1)
           log.fine("Old " + location + " in " + bounds);
           oldLocation.setLocation(location);
           Thread.sleep(longDelay * 1000);
